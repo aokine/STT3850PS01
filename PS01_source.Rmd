@@ -1,0 +1,369 @@
+
+---
+title: "Problem Set 01: Intro to R and RStudio"
+author: "Your Name Goes Here"
+date: 'Last compiled: `r format(Sys.time(), "%B %d, %Y at %X")`'
+output:
+  bookdown::html_document2:
+    theme: lumen
+    toc: yes
+    toc_float: yes
+    df_print: kable
+    css: MyLab.css 
+---
+
+```{r include = FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center", comment = NA, message = FALSE,  warning = FALSE)
+```
+
+```{r, echo = FALSE}
+knitr::include_graphics("figures/cbrown.jpg", dpi = 126)
+```
+
+
+The goal this week is to introduce R and RStudio which will be used throughout the course both to review the statistical concepts discussed in the  course and to analyze real data and come to informed conclusions. To clarify which is which: R is the name of the programming language itself, and RStudio is a convenient interface. 
+
+Today, we begin with the fundamental building blocks of R and RStudio: the interface, creating and saving files, and basic commands.
+
+___________
+
+
+# Opening RStudio Server 
+
+Open Appalachian's RStudio Server and sign in: [RStudio Server](https://mathr.math.appstate.edu)
+
+Your credentials are the same ones you use to log into your ASU email account. 
+
+Please **DO NOT** choose Stay signed in. 
+
+# The RStudio Interface
+
+In RStudio Server, you should see a window that looks like the image in Figure \@ref(fig:rstudio).
+
+
+```{r, label = "rstudio", echo = FALSE, fig.cap = "The RStudio interface"}
+knitr::include_graphics("figures/Studio-Opening.png", dpi = 126)
+```
+
+The panel on the left is where the action happens. It's called the *console*.  Every time RStudio is launched, it will have the same text at the top of the  console describing the version of R that is running.
+
+The panel in the upper right contains the *workspace*. This shows the variables and objects defined during an R session and a history of the commands that are entered. 
+
+Any plots that are generated will show up in the panel in the lower right corner.  This is also where you can browse your files, access help files, and upload and download files. 
+
+
+# Using R Markdown Files
+
+## Opening a New File
+
+In R, we use a document type called an R Markdown document. R Markdown documents are useful for both running code and annotating the code with comments. The document can be saved, so you can refer back to your code later and can be used to create other document types (html, word, pdf, or slides) for presenting the results of your analyses. R Markdown provides a way to generate clear and reproducible statistical analyses. 
+
+To open a new file, click on the little green plus on the upper left hand and select R Markdown; see Figure \@ref(fig:open). You can leave it untitled. 
+
+```{r, label = "open", echo = FALSE,out.height = '50%',out.width = '50%',fig.cap = "Starting a new R Markdown file"}
+knitr::include_graphics("figures/how.to.open.rmd.png", dpi = 127)
+```
+
+When you open a new R Markdown file, there is some example code in it that you can delete. We will take care of this next. 
+
+## Make Changes to a File
+
+Let's make some changes to the R Markdown file you just opened. Using the image below as a guide,
+
+- First, change the title of the lab at the top to "Getting to Know RStudio." Be sure to keep the quotation marks. 
+- Second, add an author line, following the example below. You need quotation marks!
+- Third, delete everything in the document after line 6.
+- Fourth, add headers and text, **exactly** following the example below. 
+- Finally, insert what is called a "code chunk." To do this, you click on the **insert** button near the top center of the screen, then choose R. The greyed out box that shows up is where you type code. 
+
+Your final result should look like this:
+
+```{r, echo = FALSE}
+knitr::include_graphics("figures/make_changes.png", dpi = 127)
+```
+
+## Saving a File
+
+Lab work is committed and pushed as an R Markdown file like this each week, so it is important to learn how to save these files.  
+
+-  Click File > Save As...
+-  Name the file: `PS01_lastname_firstname` (fill in your firstname and lastname).  **Note:** the `PS01_lastname_firstname` file is just for your own practice.  The file you will save, commit and push to the class repository is this `PS01_source.Rmd` file you download and make changes to starting in Section 6 (Practice on Your Own). 
+-  Click save
+
+This is now saved in the `MD-PS01-SC` folder **on the server**. 
+
+## Knitting a File
+
+Click the Knit button at the top left side of the screen to "knit" the file, or in other words, produce an output document. An `*.html` file will be generated. It is automatically saved in the same folder as your R Markdown file. 
+
+<div id="instructions">
+Note that there is now a R Markdown file (`PS01_lastname_firstname.Rmd`) and an html file (`PS01_lastname_firstname.html`) in the `MD-PS01-SC` folder in addition to the files you downloaded.
+</div>
+
+Inspect the `*.html` file to see how what you typed was formatted. There are lots of tricks for controlling the formatting of the knitted html file. For instance:
+
+*  putting `##` and a space in front of text makes it into a large header. For example, see how `## This is a header` in your R Markdown `*.Rmd` file translates in the resulting `*.html` output.
+*  putting `###` and a space in front of text makes it a smaller header.
+
+
+# Entering and Running Commands
+
+The code chunks are where you put R code in an R Markdown file. So far, your "knitted" file (your output document file) doesn't show anything, because we did not put any content in the code chunks yet. 
+
+Using your first code chunk, type the following command to create a new variable called `x` with the value of 6. 
+
+```{r}
+x <- 6
+```
+
+The arrow `<-` is called an **ASSIGNMENT OPERATOR** and tells R to save an object called `x` that has the value of 6. This is similar to saving a value in a graphing calculator. 
+
+> Note that whatever you want to save must always be to the left of the assignment operator.
+
+To actually **RUN** this command in your console, you have a few options:
+
+- click on the green triangle in the code chunk
+- highlight the code and hit `Control-Enter` on a PC or `Command-Return` on a Mac
+
+Think of "running" code in your console as telling R "do this."
+
+<div id="instructions">
+Note that you now have a new object in your workspace, called `x`.
+</div>
+
+```{r, echo = FALSE}
+knitr::include_graphics("figures/workspacex.png", dpi = 127)
+```
+
+
+# Data Types$-$a Brief Intro
+
+So far, you have made a numeric variable `x`. There many other types of data objects you can make in R.
+
+First, copy, paste, and run the following command in a new code chunk to make a **character** called `favorite_movie`. Think of characters as text as opposed to numerical values. Note that R knows this is a **character** because there are quotation marks around `Star_Wars`. 
+
+```{r}
+favorite_movie <- "Star_Wars"
+```
+
+Next, copy, paste, and run the following command in a new code chunk. 
+
+```{r}
+v <- c(2, 4, 6)
+```
+
+This makes what is called a **vector**, which we have named `v`. It is a data object that has multiple elements of the same type. This vector contains three numbers, 2, 4, and 6. The `c()` function says tells R to `concatenate` the values 2, 4, 6, into a single **vector**. Note in the Environment pane that your vector `v` contains numbers (listed as `num`). 
+
+You can do math on a vector that contains numbers. For instance, copy, paste, and run the following command in a new code chunk. This tells R to multiply each element of the vector `v` by 3. 
+
+```{r eval = F}
+v * 3
+```
+
+________________________
+
+
+# Practice on Your Own
+
+Type complete sentences to answer all questions inside the `answer` tags provided in the R Markdown document.  Round all numeric answers you report inside the answer tags to four decimal places.  Use inline `R` code to report numeric answers inside the `answer` tags (i.e. do not hard code your numeric answers).
+
+<div id="instructions">
+Remember to save your work as you go along. Click the save button in the upper left hand corner of the R Markdown window. 
+</div>
+
+_____________
+
+1.  Answer the following with code in a code chunk (no text necessary). Remember that the code is just **instructions** for R. You need to run the code chunk to make R execute those instructions.
+    -   Create a variable called `y` with the value of 7 
+    -   Multiply `x` by `y`, and store the answer in a variable named `z` like so: `z <- x * y`
+    -   You should now see `favorite_movie`, `x`, `v`, `y`, and `z` all in your Environment pane 
+
+```{r}
+# Type your code and comments inside the code chunk
+
+```
+    
+   
+2.  - Run the following mathematical operation in a code chunk: `6 + 3` 
+    - Where does the answer appear? (please answer with **text**)
+    
+```{r}
+# Type your code and comments inside the code chunk
+
+```
+
+<div id="answer">
+Type your complete sentence answer here using inline R code and delete this comment.
+
++  
+
+</div>    
+    
+3.  - Now add a code chunk, and save the results of `6 + 3` as a variable called `a`. 
+    - Does the answer appear? (please answer with **text**)
+    - Where can you see the value of the object `a`? (please answer with **text**)
+    - Next, type `a` into the code chunk and re-run the code chunk. What happens? (please answer with **text**)
+
+```{r}
+# Type your code and comments inside the code chunk
+
+```
+
+<div id="answer">
+Type your complete sentence answer here using inline R code and delete this comment.
+
++
+
++
+
++
+
+</div> 
+
+<div id="instructions">
+It is a good idea to try kitting your document from time to time as you go along. Go ahead, and make sure your document is knitting and that your html file includes Exercise headers, text, and code. Note that knitting automatically saves your Rmd file.
+</div>
+
+
+4.   - Run following command in a new code chunk: `a^2`. 
+     - What does the `^` operator do? (please answer with **text**)
+     
+```{r}
+# Type your code and comments inside the code chunk
+
+```
+
+<div id="answer">
+Type your complete sentence answer here using inline R code and delete this comment.
+
++
+
+</div> 
+     
+
+5.   - Type the following command into a new code chunk. `sum(a, x, y)` 
+     - `sum` is a function. Based on the output, what do you think the `sum` function does? (please answer with **text**)
+     
+```{r}
+# Type your code and comments inside the code chunk
+
+```
+
+<div id="answer">
+Type your complete sentence answer here using inline R code and delete this comment.
+
++
+
+</div>      
+
+6.   - Click the little broom icon in the upper right hand corner of the **Environment** pane.  Click yes on the window that opens.      What happened? (please answer with **text**, and don't freak out)  
+
+<div id="answer">
+Type your complete sentence answer here using inline R code and delete this comment.
+
++
+
+</div> 
+
+7.   - Go to the **Run** button at the top right of the R Markdown pane, and choose **Run All** (the last option)
+     - What happened? (please answer with **text**)
+     
+
+<div id="answer">
+Type your complete sentence answer here using inline R code and delete this comment.
+
++
+
+</div>      
+     
+   
+8.  Recall the vector `v` we created earlier. Copy, paste, and run the following in a code chunk. What does this code accomplish? (please answer with **text**)
+
+```{r eval = FALSE}
+v + 2
+```
+
+```{r}
+# Type your code and comments inside the code chunk
+
+```
+
+<div id="answer">
+Type your complete sentence answer here using inline R code and delete this comment.
+
++
+
+</div>   
+
+9.  Copy, paste, and run the following code to make a vector called `music` that contains music genres. Recall a vector is a data object that has multiple elements of the same type. Here the data type is a **character**. Look in the environment pane. How does R tell us that this vector contains **characters** not numbers? (please answer with **text**)
+
+```{r, eval = FALSE}
+music <- c("bluegrass", "funk", "folk")
+```
+
+```{r}
+# Type your code and comments inside the code chunk
+
+```
+
+<div id="answer">
+Type your complete sentence answer here using inline R code and delete this comment.
+
++
+
+</div> 
+
+
+10. Now let's practice some basic formatting. Using <https://rmarkdown.rstudio.com/authoring_basics.html>, figure out how to put the following into your lab report. These all can get typed into the white section, where text goes. **Hint:** To put  **each of these on its own line** hit a hard return between each line of text.  You do not need to do anything for this problem other than observe the markdown in the document and what the result looks like.
+
+
+*Italicize like this*
+
+**Bold like this**
+
+A superscript: R^2^
+
+
+11. **Extra credit:** What in the world does Charlie Brown have to do with R?
+
+<div id="answer">
+Type your complete sentence answer here using inline R code and delete this comment.
+
+
+</div> 
+
+_____________
+
+# Turning in Your Work
+
+You will need to make sure you knit your `*.Rmd` document, commit and push all of your changes to the github education repository where you obtained the lab.
+
+- Make sure you **knit a final copy with all your changes**
+- Look at your final html file to make sure it contains the work you expect and is formatted properly.  Type your **text** answers inside the `</div>` tags, and delete the extraneous comments.  
+
+
+# Logging out of the Server
+
+There are a lot of stats classes and students using the Server. To keep the server running as fast as possible, it is best to sign out when you are done. To do so, follow all the same steps for closing an R Markdown document as above: 
+
+- Save all your work. 
+- Click on the orange button in the far right corner of the screen to quit R 
+- Choose **don't save** for the **Workspace image**
+- When the browser refreshes, you can click on the icon of your name in the top right. 
+- You are signed out. 
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("https://ih0.redbubble.net/image.383394350.6935/mp,550x550,gloss,ffffff,t.3u1.jpg", dpi = 126)
+```
+
+
+_________
+
+```{r}
+sessionInfo()
+```
+
+___________
+
