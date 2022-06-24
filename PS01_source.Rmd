@@ -29,6 +29,10 @@ Today, we begin with the fundamental building blocks of R and RStudio: the inter
 ___________
 
 
+*  Change the author field to your First and Last name (example, `author: "John Smith"`).
+
+
+
 # Opening RStudio Server 
 
 Open Appalachian's RStudio Server and sign in: [RStudio Server](https://mathr.math.appstate.edu)
@@ -325,13 +329,7 @@ Type your complete sentence answer here using inline R code and delete this comm
 A superscript: R^2^
 
 
-11. **Extra credit:** What in the world does Charlie Brown have to do with R?
 
-<div id="answer">
-Type your complete sentence answer here using inline R code and delete this comment.
-
-
-</div> 
 
 _____________
 
